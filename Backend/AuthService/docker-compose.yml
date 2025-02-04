@@ -1,0 +1,32 @@
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - fleetiq-network
+    
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=authDb
+    ports:
+      - "5432:5432"
+    networks:
+      - fleetiq-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+networks:
+  fleetiq-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

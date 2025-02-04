@@ -1,0 +1,6 @@
+@LogManagementService_HostAddress = http://localhost:5287
+
+GET {{LogManagementService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
